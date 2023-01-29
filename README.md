@@ -8,3 +8,5 @@ Project for University of Helsinki's Datastructures and Algorithms Lab course 20
 ## Weekly reports
 
 [Week One](https://github.com/tuovinenemma/tiralabra/blob/main/documentation/weeklyreports/week1.md)
+
+[Week Two](https://github.com/tuovinenemma/tiralabra/blob/main/documentation/weeklyreports/week2.md)
