@@ -19,8 +19,8 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
       - name: Install dependencies
-        run: poetry install --no-root
-      - name: Run tests
-        run: poetry run coverage run --branch -m pytest
+        run: poetry install
+      - name: Run coverage tests
+        run: poetry run invoke coverage
       - name: Coverage report
         run: poetry run coverage xml
