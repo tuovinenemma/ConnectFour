@@ -1,5 +1,7 @@
 # Connect Four
 
+![GHA workflow badge](https://github.com/tuovinenemma/tiralabra/workflows/CI/badge.svg)
+
 Project for University of Helsinki's Datastructures and Algorithms Lab course 2023
 
 ## Documentation
