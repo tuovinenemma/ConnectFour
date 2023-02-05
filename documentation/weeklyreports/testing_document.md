@@ -2,7 +2,7 @@
 
 ## Unit testing
 
-For running the tests use command 
+For running the tests use command:
 ```
 poetry run invoke test
 ```
@@ -11,7 +11,7 @@ At this moment the unit tests test the only file there is with funtionalities: b
 The unit tests test that the board is created correctly and different win scenarios.
 
 ## Test coverage
-For running the tests use command 
+For getting the test coverage use command:
 ```
 poetry run invoke coverage-report
 ```
