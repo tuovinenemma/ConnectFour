@@ -2,6 +2,7 @@ import sys
 import numpy as np
 import pygame
 from pygame.locals import *
+import random
 
 class Game:
     """
@@ -28,6 +29,8 @@ class Game:
         self.YELLOW = (255, 255, 0)
         self.RADIUS = self.SQUARE_SIZE//2 - 5
         self.font = pygame.font.SysFont("arial black", 50)
+        self.player = 1
+        self.ai = 0
 
     def create_board(self, rows, cols):
         """
@@ -124,7 +127,7 @@ class Game:
                     col = x_pos//self.SQUARE_SIZE
 
 
-                    if self.turn == 0:
+                    if self.turn == self.player:
                         if self.is_valid_col(col):
                             row = self.get_empty_row(col)
                             self.drop_piece(row, col)
@@ -133,32 +136,39 @@ class Game:
                                 pygame.draw.rect(
                                     self.screen, self.BLACK, (0, 0, self.WIDTH, self.SQUARE_SIZE))
                                 won_text = self.font.render(
-                                    'Player 1 Won !', True, self.RED)
+                                    'Player Won !', True, self.RED)
                                 won_rect = won_text.get_rect(
                                     center=(self.WIDTH//2, won_text.get_height()//2))
                                 self.screen.blit(won_text, won_rect)
                                 self.game_over = True
 
-                            self.turn = 1
-
-                    else:
-                        if self.is_valid_col(col):
-                            row = self.get_empty_row(col)
-                            self.drop_piece(row, col)
-
-                            if self.is_win(2):
-                                pygame.draw.rect(
-                                    self.screen, self.BLACK, (0, 0, self.WIDTH, self.SQUARE_SIZE))
-                                won_text = self.font.render(
-                                    'Player 1 Won !', True, self.RED)
-                                won_rect = won_text.get_rect(
-                                    center=(self.WIDTH//2, won_text.get_height()//2))
-                                self.screen.blit(won_text, won_rect)
-                                self.game_over = True
+                            self.turn = self.ai
+                            self.draw_board()
 
 
-                            self.turn = 0
+            if self.turn == self.ai and not self.game_over:
+
+                col = random.randint(0,self.COLS-1)
+                if self.is_valid_col(col):
+                    pygame.time.wait(600)
+                    row = self.get_empty_row(col)
+                    self.drop_piece(row, col)
+
+                    if self.is_win(2):
+                        pygame.draw.rect(
+                            self.screen, self.BLACK, (0, 0, self.WIDTH, self.SQUARE_SIZE))
+                        won_text = self.font.render(
+                            'AI Won !', True, self.RED)
+                        won_rect = won_text.get_rect(
+                            center=(self.WIDTH//2, won_text.get_height()//2))
+                        self.screen.blit(won_text, won_rect)
+                        self.game_over = True
+
+
+                    self.turn = self.player
 
 
             self.draw_board()
             pygame.display.update()
+            if self.game_over:
+                pygame.time.wait(3000)
