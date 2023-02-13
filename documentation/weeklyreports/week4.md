@@ -1,6 +1,6 @@
 # Weekly reports: Week Four
 
-Time spent: 7 hours
+Time spent: 10 hours
 
 ### What did I do:
 I have started the development of the minimax algorithm, with the aim of creating an AI player to compete against a human player. I began by implementing the foundational components, such as determining the scores for different positions on the game board. The implementation of the minimax algorithm is now in its final stages and is almost ready for deployment.
