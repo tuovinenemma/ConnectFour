@@ -7,5 +7,5 @@ Finished minimax and fixed the scoring system. Created start and end screens for
   
 ### What I will do next:
 
-Alpha-beta, tests
+Alpha-beta, tests, divide the code so the files make more sense
 
