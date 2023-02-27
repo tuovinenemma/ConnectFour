@@ -1,12 +1,16 @@
 
 import pygame
-from board import Game
+from screen import Screen
+from game_loop import GameLoop
 
 
 def main():
     pygame.init()
-    game = Game()
+    screen = Screen()
+    game = GameLoop()
+    screen._start_screen()
     game.game_loop()
+    screen._end_screen()
 
 
 if __name__ == "__main__":
