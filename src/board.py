@@ -1,9 +1,7 @@
-import sys
 import numpy as np
 import pygame
 from pygame.locals import *
 import random
-import math
 
 class Game:
     """
@@ -53,7 +51,6 @@ class Game:
         """
         Checks if a column is a valid move
         """
-        #return self.board[5][col] == 0
         return board[self.ROWS-1][col] == 0
 
 
@@ -68,6 +65,12 @@ class Game:
     def print_board(self):
         self.board = np.flip(self.board, 0)
         print(self.board)
+
+    def board_is_full(self):
+        for col in range(self.COLS):
+            if self.is_valid_col(col):
+                return False
+        return True
 
 
     def draw_board(self, board):
@@ -84,3 +87,41 @@ class Game:
                 elif board[row][col] == 2:
                     pygame.draw.circle(self.screen, self.YELLOW, (col*self.SQUARE_SIZE+self.SQUARE_SIZE//2, self.HEIGHT- (row*self.SQUARE_SIZE+self.SQUARE_SIZE//2)), self.RADIUS)
 
+    
+    def is_win(self, board, piece):
+        return self.check_horizontal_win(board, piece) \
+            or self.check_vertical_win(board, piece) \
+            or self.check_positive_diagonal_win(board, piece) \
+            or self.check_negative_diagonal_win(board, piece)
+    
+    def check_horizontal_win(self, board, piece):
+        """
+        Checks if the specified piece has won the game
+        :param piece: piece to check (1 or 2)
+        :return: True if the piece has won, False otherwise
+        """
+        for col in range(self.COLS - 3):
+            for row in range(self.ROWS):
+                if board[row][col] == piece and board[row][col+1] == piece and board[row][col+2] == piece and board[row][col+3] == piece:
+                    return True
+
+    def check_vertical_win(self, board, piece):
+
+        for col in range(self.COLS):
+            for row in range(self.ROWS - 3):
+                if board[row][col] == piece and board[row+1][col] == piece and board[row+2][col] == piece and board[row+3][col] == piece:
+                    return True
+
+    def check_positive_diagonal_win(self, board, piece):
+
+        for col in range(self.COLS - 3):
+            for row in range(self.ROWS - 3):
+                if board[row][col] == piece and board[row+1][col+1] == piece and board[row+2][col+2] == piece and board[row+3][col+3] == piece:
+                    return True
+
+    def check_negative_diagonal_win(self, board, piece):
+
+        for col in range(self.COLS - 3):
+            for row in range(3, self.ROWS):
+                if board[row][col] == piece and board[row - 1][col + 1] == piece and board[row - 2][col + 2] == piece and board[row - 3][col + 3] == piece:
+                    return True

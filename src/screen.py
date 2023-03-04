@@ -1,7 +1,6 @@
 import pygame
 
 class Screen:
-
     def __init__(self):
 
         pygame.init()
@@ -12,12 +11,12 @@ class Screen:
     def _start_screen(self):        
         self._start_text()
         pygame.display.update()
-        pygame.time.wait(3000)
+        pygame.time.wait(1000)
 
     def _end_screen(self):        
         self._end_text()
         pygame.display.update()
-        pygame.time.wait(3000)
+        pygame.time.wait(1000)
         
 
     def _text_style(self, words, screen, pos, size, colour, font_name, middle=False):
@@ -30,12 +29,12 @@ class Screen:
         screen.blit(text, pos)
 
     def _start_text(self):
-        self._screen.fill((255, 255, 255))
+        self._screen.fill((0, 0, 0))
         self._text_style('Connect Four', self._screen, [
-                        self._width//2, self._height//2-50], 45, (0, 0, 0), 'arial black', middle=True)
+                        self._width//2, self._height//2-100], 45, (255, 255, 255), 'arial black', middle=True)
         
 
     def _end_text(self):
-        self._screen.fill((255, 255, 255))
+        self._screen.fill((0, 0, 0))
         self._text_style('Game Over', self._screen, [
-                        self._width//2, self._height//2-50], 45, (0, 0, 0), 'arial black', middle=True)
+                        self._width//2, self._height//2-100], 45, (255, 255, 255), 'arial black', middle=True)

@@ -2,6 +2,7 @@ import pygame
 import sys
 from board import Game
 from minimax import Minimax
+
 class GameLoop:
     def __init__(self):
         
@@ -9,7 +10,6 @@ class GameLoop:
         self.game = Game()
         self.minimax = Minimax()
         self.game_over = False
-
 
     
     def game_loop(self):
@@ -25,19 +25,18 @@ class GameLoop:
                     x_pos = event.pos[0]
                     col = x_pos//self.game.SQUARE_SIZE
 
-
                     if self.game.turn == self.game.player:
                         if self.game.is_valid_col(self.game.board, col):
                             row = self.game.get_empty_row(self.game.board, col)
                             self.game.drop_piece(self.game.board, row, col, 1)
 
-                            if self.minimax.is_win(self.game.board, 1):
+                            if self.game.is_win(self.game.board, 1):
                                 pygame.draw.rect(
                                     self.game.screen, self.game.BLACK, (0, 0, self.game.WIDTH, self.game.SQUARE_SIZE))
-                                won_text = self.font.render(
+                                won_text = self.game.font.render(
                                     'Player Won !', True, self.game.RED)
                                 won_rect = won_text.get_rect(
-                                    center=(self.WIDTH//2, won_text.get_height()//2))
+                                    center=(self.game.WIDTH//2, won_text.get_height()//2))
                                 self.game.screen.blit(won_text, won_rect)
                                 self.game_over = True
 
@@ -54,7 +53,7 @@ class GameLoop:
                     row = self.game.get_empty_row(self.game.board, col)
                     self.game.drop_piece(self.game.board, row, col, 2)
 
-                    if self.minimax.is_win(self.game.board, 2):
+                    if self.game.is_win(self.game.board, 2):
                         pygame.draw.rect(
                             self.game.screen, self.game.BLACK, (0, 0, self.game.WIDTH, self.game.SQUARE_SIZE))
                         won_text = self.game.font.render(
