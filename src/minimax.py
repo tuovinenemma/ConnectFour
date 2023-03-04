@@ -47,13 +47,14 @@ class Minimax:
 
                 score += self.rate_possible_move(possible_move, piece)
 
-        #diag
+        #positive diag
         for row in range(self.game.ROWS-3):
             for col in range(self.game.COLS-3):
                 possible_move = [board[row+i][col+i] for i in range(4)]
 
                 score += self.rate_possible_move(possible_move, piece)
 
+        #negative diag
         for row in range(self.game.ROWS-3):
             for col in range(self.game.COLS-3):
                 possible_move = [board[row+3-i][col+i] for i in range(4)]
@@ -69,23 +70,6 @@ class Minimax:
                 valid_locations.append(col)
         return valid_locations
 
-    def best_move(self, board, piece):
-        
-        valid_locations = self.valid_location(board)
-        best_score = -10000
-        best_col = random.choice(valid_locations)
-
-        for col in valid_locations:
-            row = self.game.get_empty_row(board, col)
-            temp_board = board.copy()
-            self.game.drop_piece(temp_board, row, col, piece)
-            score = self.score(temp_board, piece)
-            
-            if score > best_score:
-                best_score = score
-                best_col = col
-
-        return best_col
     
     def is_terminal(self, board):
         return self.game.is_win(board, 1) or self.game.is_win(board, 2) or len(self.valid_location(board)) == 0
@@ -99,6 +83,7 @@ class Minimax:
                     return (None, 100000000000000)
                 elif self.game.is_win(board, 1):
                     return (None, -10000000000000)
+                
                 else:
                     return (None, 0)
             else:

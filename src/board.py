@@ -14,18 +14,18 @@ class Game:
         pygame.init()
         self.ROWS = 6
         self.COLS = 7
+        self.WIDTH = self.COLS * self.square_size
+        self.HEIGHT = (self.ROWS + 1) * self.square_size
         self.board = self.create_board(self.ROWS, self.COLS)
         self.turn = random.randint(0, 1)
-        self.SQUARE_SIZE = 100
-        self.WIDTH = self.COLS * self.SQUARE_SIZE
-        self.HEIGHT = (self.ROWS + 1) * self.SQUARE_SIZE
+        self.square_size = 100
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         pygame.display.set_caption("Connect Four")
-        self.BLUE = (0, 0, 255)
-        self.BLACK = (0, 0, 0)
-        self.RED = (255, 0, 0)
-        self.YELLOW = (255, 255, 0)
-        self.RADIUS = self.SQUARE_SIZE//2 - 5
+        self.blue = (0, 0, 255)
+        self.black = (0, 0, 0)
+        self.red = (255, 0, 0)
+        self.yellow = (255, 255, 0)
+        self.radius = self.square_size//2 - 5
         self.font = pygame.font.SysFont("arial black", 50)
         self.player = 1
         self.ai = 0
@@ -66,26 +66,20 @@ class Game:
         self.board = np.flip(self.board, 0)
         print(self.board)
 
-    def board_is_full(self):
-        for col in range(self.COLS):
-            if self.is_valid_col(col):
-                return False
-        return True
-
 
     def draw_board(self, board):
         for row in range(self.ROWS):
             for col in range(self.COLS):
-                pygame.draw.rect(self.screen, self.BLUE, (col*self.SQUARE_SIZE, row*self.SQUARE_SIZE+self.SQUARE_SIZE, self.SQUARE_SIZE, self.SQUARE_SIZE))
-                pygame.draw.circle(self.screen, self.BLACK, (col*self.SQUARE_SIZE+self.SQUARE_SIZE//2, row*self.SQUARE_SIZE+self.SQUARE_SIZE+self.SQUARE_SIZE//2), self.RADIUS)
+                pygame.draw.rect(self.screen, self.blue, (col*self.square_size, row*self.square_size+self.square_size, self.square_size, self.square_size))
+                pygame.draw.circle(self.screen, self.black, (col*self.square_size+self.square_size//2, row*self.square_size+self.square_size+self.square_size//2), self.radius)
 
         for row in range(self.ROWS):
             for col in range(self.COLS):
                 if board[row][col] == 1:
-                    pygame.draw.circle(self.screen, self.RED, (col*self.SQUARE_SIZE+self.SQUARE_SIZE//2, self.HEIGHT- (row*self.SQUARE_SIZE+self.SQUARE_SIZE//2)), self.RADIUS)
+                    pygame.draw.circle(self.screen, self.red, (col*self.square_size+self.square_size//2, self.HEIGHT- (row*self.square_size+self.square_size//2)), self.radius)
 
                 elif board[row][col] == 2:
-                    pygame.draw.circle(self.screen, self.YELLOW, (col*self.SQUARE_SIZE+self.SQUARE_SIZE//2, self.HEIGHT- (row*self.SQUARE_SIZE+self.SQUARE_SIZE//2)), self.RADIUS)
+                    pygame.draw.circle(self.screen, self.yellow, (col*self.square_size+self.square_size//2, self.HEIGHT- (row*self.square_size+self.square_size//2)), self.radius)
 
     
     def is_win(self, board, piece):

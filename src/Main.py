@@ -1,4 +1,3 @@
-
 import pygame
 from screen import Screen
 from game_loop import GameLoop
@@ -9,7 +8,7 @@ def main():
     screen = Screen()
     game = GameLoop()
     screen._start_screen()
-    game.game_loop()
+    game.run()
     screen._end_screen()
 
 
