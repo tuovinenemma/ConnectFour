@@ -1,11 +1,11 @@
+import random
 import numpy as np
 import pygame
 from pygame.locals import *
-import random
 
 class Game:
     """
-    Class that represents the Connect Four game
+    Class that represents the Connect Four game board
     """
     def __init__(self):
         """
@@ -85,32 +85,52 @@ class Game:
                 elif board[row][col] == 2:
                     pygame.draw.circle(self.screen, self.yellow, (col*self.square_size+self.square_size//2, self.HEIGHT- (row*self.square_size+self.square_size//2)), self.radius)
 
-    
+
     def board_is_full(self):
+        """
+        Determines whether the game board is full.
+
+        Iterates through each column in the game board, and if any column is not
+        full (i.e., has an empty cell), returns False. If all columns are full,
+        returns True.
+        """
         for col in range(self.COLS):
             if self.is_valid_col(self.board, col):
                 return False
         return True
 
-    
+
     def is_win(self, board, piece):
+        """
+        Determines whether a player has won the game.
+
+        Checks for a win by calling helper functions to check for horizontal,
+        vertical, positive diagonal, and negative diagonal wins. Returns True
+        if any of those functions return True, and False otherwise.
+        """
         return self.check_horizontal_win(board, piece) \
             or self.check_vertical_win(board, piece) \
             or self.check_positive_diagonal_win(board, piece) \
             or self.check_negative_diagonal_win(board, piece)
-    
+
     def check_horizontal_win(self, board, piece):
         """
-        Checks if the specified piece has won the game
-        :param piece: piece to check (1 or 2)
-        :return: True if the piece has won, False otherwise
+        Determines whether a player has won with a horizontal line of pieces.
+
+        Iterates through each row and column on the game board, and checks if
+        there are four consecutive pieces of the same type in a line.
+        Returns True if such a line is found, and False otherwise.
         """
+
         for col in range(self.COLS - 3):
             for row in range(self.ROWS):
                 if board[row][col] == piece and board[row][col+1] == piece and board[row][col+2] == piece and board[row][col+3] == piece:
                     return True
 
     def check_vertical_win(self, board, piece):
+        """
+        Determines whether a player has won with a vertical line of pieces.
+        """
 
         for col in range(self.COLS):
             for row in range(self.ROWS - 3):
@@ -118,13 +138,18 @@ class Game:
                     return True
 
     def check_positive_diagonal_win(self, board, piece):
-
+        """
+        Determines whether a player has won with a positive diagonal line of pieces.
+        """
         for col in range(self.COLS - 3):
             for row in range(self.ROWS - 3):
                 if board[row][col] == piece and board[row+1][col+1] == piece and board[row+2][col+2] == piece and board[row+3][col+3] == piece:
                     return True
 
     def check_negative_diagonal_win(self, board, piece):
+        """
+        Determines whether a player has won with a negative diagonal line of pieces.    
+        """
 
         for col in range(self.COLS - 3):
             for row in range(3, self.ROWS):
