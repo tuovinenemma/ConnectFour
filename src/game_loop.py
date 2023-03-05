@@ -13,7 +13,6 @@ class GameLoop:
     def handle_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
                 sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -29,19 +28,27 @@ class GameLoop:
                 self.game_over = True
                 self.show_winner('Player Won !')
 
+            elif self.game.board_is_full():
+                self.game_over = True
+                self.show_winner("It's a tie !")
+
             self.game.turn += 1
             self.game.turn = self.game.turn % 2
             self.game.draw_board(self.game.board)
 
     def handle_ai_move(self):
         if self.game.turn == self.game.ai and not self.game_over:
-            col, value = self.minimax.minimax(self.game.board, 3, True)
+            col, value = self.minimax.minimax(self.game.board, 4, True)
             if self.game.is_valid_col(self.game.board, col):
                 row = self.game.get_empty_row(self.game.board, col)
                 self.game.drop_piece(self.game.board, row, col, 2)
                 if self.game.is_win(self.game.board, 2):
                     self.game_over = True
                     self.show_winner('AI Won !')
+
+                elif self.game.board_is_full():
+                    self.game_over = True
+                    self.show_winner("It's a tie !")
 
                 self.game.turn += 1
                 self.game.turn = self.game.turn % 2

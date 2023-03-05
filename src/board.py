@@ -14,11 +14,11 @@ class Game:
         pygame.init()
         self.ROWS = 6
         self.COLS = 7
+        self.square_size = 100
         self.WIDTH = self.COLS * self.square_size
         self.HEIGHT = (self.ROWS + 1) * self.square_size
         self.board = self.create_board(self.ROWS, self.COLS)
         self.turn = random.randint(0, 1)
-        self.square_size = 100
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         pygame.display.set_caption("Connect Four")
         self.blue = (0, 0, 255)
@@ -40,6 +40,10 @@ class Game:
         """
         board = np.zeros((rows, cols))
         return board
+
+
+    def reset_board(self):
+        self.board = self.create_board(self.ROWS, self.COLS)
 
     def drop_piece(self, board, row, col, piece):
         """
@@ -80,6 +84,13 @@ class Game:
 
                 elif board[row][col] == 2:
                     pygame.draw.circle(self.screen, self.yellow, (col*self.square_size+self.square_size//2, self.HEIGHT- (row*self.square_size+self.square_size//2)), self.radius)
+
+    
+    def board_is_full(self):
+        for col in range(self.COLS):
+            if self.is_valid_col(self.board, col):
+                return False
+        return True
 
     
     def is_win(self, board, piece):
