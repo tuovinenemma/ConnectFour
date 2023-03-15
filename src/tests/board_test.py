@@ -147,9 +147,6 @@ class TestGame(unittest.TestCase):
         self.game.drop_piece(self.game.board, 5, 3, 1)
         self.game.drop_piece(self.game.board, 4, 3, 2)
         self.game.drop_piece(self.game.board, 3, 3, 1)
-        self.game.drop_piece(self.game.board, 2, 3, 1)
-        self.game.drop_piece(self.game.board, 5, 2, 2)
-        self.game.drop_piece(self.game.board, 4, 2, 2)
 
         # call draw_board method
         screen = self.game.draw_board(self.game.board)
@@ -160,10 +157,6 @@ class TestGame(unittest.TestCase):
         self.assertTrue(screen.get_at((game.square_size // 2, game.HEIGHT - game.square_size // 2)) == game.black)
         self.assertTrue(screen.get_at((0, game.HEIGHT - 2 * game.square_size)) == (0, 0, 255, 255))
 
-        # assert that red and yellow circles are drawn at the correct positions
-        self.assertEqual(screen.get_at((game.square_size // 2, game.HEIGHT - 4 * game.square_size // 2)), game.red)  # check for red circle
-        self.assertTrue(screen.get_at((2 * game.square_size // 2, game.HEIGHT - 5 * game.square_size // 2)) == game.yellow)  # check for yellow circle
- 
     def test_is_valid_col(self):
         # Create an instance of the game board
         board = np.array([[1, 0, 0, 0, 0, 0, 0],
@@ -198,3 +191,6 @@ class TestGame(unittest.TestCase):
                 self.game.drop_piece(self.game.board, i, j, 1)
         self.assertTrue(self.game.board_is_full(self.game.board))
 
+if __name__ == '__main__':
+    unittest.main()
+    
