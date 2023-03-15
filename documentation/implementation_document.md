@@ -23,6 +23,16 @@ Without alpha-beta pruning, the minimax algorithm would examine every node in th
 
 The time complexity of the above implementation of the minimax algorithm depends on the search depth, which in this implementation was set to a maximum of 5. The branching factor, i.e., the number of possible moves in a game turn, starts at 7 in the beginning of the game and decreases as columns get filled up. In the worst case scenario, when no pruning occurs and all branches are explored, the time complexity of the algorithm is O(b^d), where b is the branching factor and d is the depth of the search tree. However, with the implemented alpha-beta pruning, the branching factor remains the same, but the search tree gets pruned to some extent by not exploring every branch. With minimax and alpha beta pruningthe time complexity is O(n).
 
+## Graphical user interface
+
+The program's graphical user interface was developed using Pygame, which utilizes straightforward mouse clicking to detect movements.
+
+![Screenshot from 2023-03-15 12-04-22](https://user-images.githubusercontent.com/102189885/225276993-eb6e1292-6b4b-4bc5-a945-55641e3e87c2.png)
+
+## What can be improved:
+* The game would offer various levels with differing difficulty settings. Depending on the level you choose, the depth of the Minimax algorithm will be adjusted accordingly.
+* Incorporating a more intricate graphical user interface would enhance the overall gameplay experience, resulting in increased enjoyment for the player.
+
 ## Sources
 
 * https://en.wikipedia.org/wiki/Minimax
