@@ -43,7 +43,7 @@ class GameLoop:
                 self.game_over = True
                 self.show_winner('Player Won !')
 
-            elif self.game.board_is_full():
+            elif self.game.board_is_full(self.game.board):
                 self.game_over = True
                 self.show_winner("It's a tie !")
 
@@ -56,7 +56,7 @@ class GameLoop:
         Updates the game board with the AI move and checks for AI win or tie.
         """
         if self.game.turn == self.game.ai and not self.game_over:
-            col, value = self.minimax.minimax(self.game.board, 1, True)
+            col, value = self.minimax.minimax(self.game.board, 5, True)
             if self.game.is_valid_col(self.game.board, col):
                 row = self.game.get_empty_row(self.game.board, col)
                 self.game.drop_piece(self.game.board, row, col, 2)
@@ -64,7 +64,7 @@ class GameLoop:
                     self.game_over = True
                     self.show_winner('AI Won !')
 
-                elif self.game.board_is_full():
+                elif self.game.board_is_full(self.game.board):
                     self.game_over = True
                     self.show_winner("It's a tie !")
 
@@ -91,4 +91,4 @@ class GameLoop:
             self.game.draw_board(self.game.board)
             pygame.display.update()
 
-        pygame.time.wait(2000)
+        pygame.time.wait(3000)

@@ -42,9 +42,6 @@ class Game:
         return board
 
 
-    def reset_board(self):
-        self.board = self.create_board(self.ROWS, self.COLS)
-
     def drop_piece(self, board, row, col, piece):
         """
         Drops a piece of the current player (1 or 2) at the specified row and column
@@ -66,10 +63,6 @@ class Game:
             if board[row][col] == 0:
                 return row
 
-    def print_board(self):
-        self.board = np.flip(self.board, 0)
-        print(self.board)
-
 
     def draw_board(self, board):
         for row in range(self.ROWS):
@@ -84,9 +77,9 @@ class Game:
 
                 elif board[row][col] == 2:
                     pygame.draw.circle(self.screen, self.yellow, (col*self.square_size+self.square_size//2, self.HEIGHT- (row*self.square_size+self.square_size//2)), self.radius)
+        return self.screen
 
-
-    def board_is_full(self):
+    def board_is_full(self, board):
         """
         Determines whether the game board is full.
 
@@ -95,7 +88,7 @@ class Game:
         returns True.
         """
         for col in range(self.COLS):
-            if self.is_valid_col(self.board, col):
+            if self.is_valid_col(board, col):
                 return False
         return True
 
@@ -148,7 +141,7 @@ class Game:
 
     def check_negative_diagonal_win(self, board, piece):
         """
-        Determines whether a player has won with a negative diagonal line of pieces.    
+        Determines whether a player has won with a negative diagonal line of pieces.
         """
 
         for col in range(self.COLS - 3):

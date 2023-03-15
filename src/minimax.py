@@ -95,10 +95,10 @@ class Minimax:
     def valid_location(self, board):
         """
         Returns a list of valid locations on the board where a piece can be placed.
-        
+
         Parameters:
         board (list): A 2D list representing the current state of the board.
-        
+
         Returns:
         valid_locations (list): A list of column indices where a piece can be placed.
         """
@@ -112,10 +112,10 @@ class Minimax:
     def game_over(self, board):
         """
         Returns True if the game is over, either due to a player winning or the board being full.
-        
+
         Parameters:
         board (list): A 2D list representing the current state of the board.
-        
+
         Returns:
         (bool): True if the game is over, False otherwise.
         """
@@ -124,14 +124,14 @@ class Minimax:
     def minimax(self, board, depth, maxPlayer, alpha=-inf, beta=inf):
         """
         Returns the best move for the AI player using the minimax algorithm with alpha-beta pruning.
-        
+
         Parameters:
         board (list): A 2D list representing the current state of the board.
         depth (int): The depth of the search tree.
         maxPlayer (bool): True if the AI player is making the move, False otherwise.
         alpha (int): The maximum lower bound of possible solutions.
         beta (int): The minimum upper bound of possible solutions.
-        
+
         Returns:
         column (int): The column index where the AI player should drop a piece.
         max_value/min_value (int): The score associated with the column, indicating how good the move is for the AI player.
@@ -139,8 +139,11 @@ class Minimax:
         valid_locations = self.valid_location(board)
         game_over = self.game_over(board)
 
-        if self.game.board_is_full():
+        if self.game.board_is_full(self.game.board):
             return (None, 0)
+        
+        if not valid_locations:
+            return None, 0
 
         if depth == 0 or game_over:
 
