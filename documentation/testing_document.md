@@ -15,8 +15,11 @@ For getting the test coverage use command:
 ```
 poetry run invoke coverage-report
 ```
+Coverage for the program right now is 93%.
 
-![Screenshot from 2023-02-05 22-20-20](https://user-images.githubusercontent.com/102189885/216842782-ba6eb2f7-b634-4237-a3d4-188b7f979de4.png)
+![Screenshot from 2023-03-15 13-51-33](https://user-images.githubusercontent.com/102189885/225301218-41a7dc2f-561f-4bb6-beaf-faa5b587ec76.png)
+
+
 
 ## Testing for gameboard
 In unit testing of the game board, the objective is to verify the correctness of the Game, GameLoop and Screen classes methods that operate on the game board.
