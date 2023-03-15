@@ -2,7 +2,7 @@
 The application has been created using Pygame, and it is playable through a graphical user interface.
 
 ## How to use the program:
-* Once you have downloaded the program, you can set it up by running the command "poetry install". 
+* Once you have downloaded the program via cloning it and entering the right repository, you can set it up by running the command "poetry install". 
 * Next, move to the virtual environment required to use the program by executing the command "poetry shell". 
 * Once you have entered the virtual environment, you can start the game by running the command "poetry run invoke start". 
 * The game will automatically close once it is finished. However, if you want to exit the game before it is over, simply click on the "exit" button located in the upper right corner.
