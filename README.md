@@ -11,6 +11,8 @@ Project for University of Helsinki's Datastructures and Algorithms Lab course 20
 
 [Implementation document](https://github.com/tuovinenemma/tiralabra/blob/main/documentation/implementation_document.md)
 
+[User manual](https://github.com/tuovinenemma/tiralabra/blob/main/documentation/user_manual.md)
+
 ## Weekly reports
 
 [Week One](https://github.com/tuovinenemma/tiralabra/blob/main/documentation/weeklyreports/week1.md)
