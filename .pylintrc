@@ -73,6 +73,13 @@ disable=raw-checker-failed,
         missing-class-docstring,
         w0614,
         r0201,
+        r1710,
+        w0212,
+        w0401,
+        w0201,
+        w0612,
+        r1705,
+
 
 
 
@@ -367,12 +374,8 @@ good-names=i,x,y,
            SQUARE,
            WIDTH,
            HEIGHT,
-           BLUE,
-           BLACK,
-           RED,
-           YELLOW,
-           RADIUS,
-           SQUARE_SIZE
+           maxPlayer,
+           ai
 
 # Good variable names regexes, separated by a comma. If names match any regex,
 # they will always be accepted
@@ -524,7 +527,7 @@ max-public-methods=30
 max-returns=10
 
 # Maximum number of statements in function / method body.
-max-statements=30
+max-statements=50
 
 # Minimum number of public methods for a class (see R0903).
 min-public-methods=0

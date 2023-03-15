@@ -141,7 +141,7 @@ class Minimax:
 
         if self.game.board_is_full(self.game.board):
             return (None, 0)
-        
+
         if not valid_locations:
             return None, 0
 
