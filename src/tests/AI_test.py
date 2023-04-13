@@ -130,7 +130,7 @@ class TestMinimax(unittest.TestCase):
         best_move, _ = self.minimax.minimax(board, depth, True)
         self.assertEqual(best_move, 1)
 
-        def test_win_in_five_moves(self):
+    def test_win_in_five_moves(self):
 
         board = np.array([
             [0, 0, 1, 0, 0, 0, 0],

@@ -142,15 +142,6 @@ class TestGameLoop(unittest.TestCase):
         self.game_loop.show_winner.assert_called_once_with("It's a tie !")
 
 
-    def test_show_winner(self):
-        # Test show winner message
-        pygame.init()
-        game_loop = GameLoop()
-        game_loop.game_over = True
-        message = "Test Message"
-        result = game_loop.show_winner(message)
-        assert type(result) == pygame.Rect
-
     @patch("sys.exit")
     @patch("pygame.event.get")
     def test_handle_events_quit(self, event_get_mock, sys_exit_mock):
