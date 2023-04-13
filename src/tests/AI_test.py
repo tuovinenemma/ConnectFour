@@ -130,6 +130,54 @@ class TestMinimax(unittest.TestCase):
         best_move, _ = self.minimax.minimax(board, depth, True)
         self.assertEqual(best_move, 1)
 
+        def test_win_in_five_moves(self):
+
+        board = np.array([
+            [0, 0, 1, 0, 0, 0, 0],
+            [0, 0, 2, 1, 0, 0, 0],
+            [0, 0, 1, 2, 2, 0, 0],
+            [0, 0, 1, 2, 2, 0, 0],
+            [0, 0, 2, 2, 1, 0, 0],
+            [1, 1, 2, 1, 2, 0, 1]
+        ])
+
+        # Winning move is found with depth 3
+
+        depth = 3
+        best_move, score = self.minimax.minimax(board, depth, True)
+        self.assertEqual(best_move, 5)
+        self.assertGreaterEqual(score, 100000000000)
+
+        # Winning move is not found with depth 2
+
+        depth = 2
+        best_move, score = self.minimax.minimax(board, depth, True)
+        self.assertEqual(best_move, 5)
+        self.assertLessEqual(score, 100000000000)
+ 
+    def test_win_in_nine_moves(self):
+
+        board = np.array([
+            [1, 0, 0, 1, 1, 0, 0],
+            [2, 0, 0, 2, 2, 0, 0],
+            [1, 0, 0, 2, 1, 1, 0],
+            [2, 0, 0, 2, 1, 2, 0],
+            [1, 0, 0, 1, 2, 1, 0],
+            [2, 0, 0, 2, 1, 2, 1]
+        ])
+
+        # Winning move is found with depth 6
+
+        depth = 5
+        best_move, score = self.minimax.minimax(board, depth, True)
+        self.assertEqual(best_move, 2)
+        self.assertGreaterEqual(score, 100000000000)
+
+        # Winning move is not found with depth 4
+
+        depth = 4
+        best_move, score = self.minimax.minimax(board, depth, True)
+        self.assertLessEqual(score, 100000000000)
 
     def test_valid_location(self):
         board = np.zeros((6, 7))
